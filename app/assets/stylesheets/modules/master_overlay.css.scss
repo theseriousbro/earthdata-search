@@ -4,20 +4,31 @@
 // The container for the entire overlay
 .master-overlay {
   color: #fff;
+  display: flex;
 
   a {
-    color: #fff;
   }
 
   // Non-scrollable header area
   header {
-    margin: 1em 1em 0;
-    color: $overlay-heading-font-color;
+    margin: 1em 1em 0 0;
+    height: 50px;
 
     h2 {
-      font-size: 1.4em;
+      background: #fff;
+      font-size: 1.2em;
       margin: 0;
       font-weight: 200;
+      float: left;
+      padding: 10px 20px;
+    }
+
+    .collection-hits {
+      background: $ocean-blue;
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 0.8em;
     }
 
     &.with-options {
@@ -29,6 +40,7 @@
 
       .actions {
         margin-top: .5em;
+        text-align: right;
       }
     }
   }
@@ -40,7 +52,6 @@
 
 .master-overlay-nav {
   padding: 1em;
-  border-bottom: 1px solid #333;
 }
 
 // A parent panel for the overlday.  For instance, collection facets are a parent
@@ -51,23 +62,27 @@
   left: 0;
 
   header {
-    margin: 1em 1em 0 .5em;
+    margin: 1em 0.5em 0 0.5em;
 
     h2 {
       color: #FFFFFF;
       margin: 0;
       font-size: 1em;
       font-weight: bold;
+      background: none;
+      display: block;
+      padding: inherit;
     }
   }
 }
 
 // The main section in the overlay.  Collection results, pinned collections, whatnot.
 .master-overlay-main {
-  background-color: $master-overlay-main-bg-color;
-  width: 40%;
-  left: $facet-overlay-width;
+  background-color: transparent;
+  top: 50%;
   overflow: hidden;
+  color: #424242;
+  height: 50%;
 }
 
 // The secondary section in the overlay. Granule filters
@@ -90,12 +105,14 @@
 .master-overlay-main-content {
   width: 400%;
   left: 0%;
+  background: transparent;
 
   section {
     height: 100%;
     width: 25%;
     float: left;
     position: relative;
+    padding-left: 270px;
   }
 
   dt {
@@ -116,13 +133,12 @@
 .master-overlay-parent, .master-overlay-main, .master-overlay-main-content {
   z-index: 60;
   position: absolute;
-  height: 100%;
   transition-property: left, width;
   transition-duration: 0.3s;
 }
 
-.master-overlay-parent, .master-overlay-main {
-  box-shadow: 5px 0px 2px 0px rgba(0,0,0,0.4);
+.master-overlay-parent {
+  box-shadow: 5px 0px 2px 0px rgba(0,0,0,0.2);
 }
 
 .master-overlay-parent {
@@ -148,10 +164,11 @@
 
 .master-overlay-info {
   margin: 0;
-  color: $overlay-heading-font-color;
-
+  padding: 10px;
+  background: #fff;
 
   p.button-details {
+
     span {
       display: block;
       position: relative;
@@ -169,7 +186,8 @@
   }
 
   p {
-    margin: 1em 1em 0;
+    margin: 0;
+    display: inline-block;
   }
 
   .button {
@@ -191,13 +209,11 @@
 }
 
 .is-master-overlay-maximized #collection-results .master-overlay-info {
-  height: 71px;
 }
 
 .master-overlay-global-actions {
+  float: right;
   padding: 0;
-  border: 1px solid transparent;
-  border-radius: 3px;
 
   .button {
     @include light-button;
@@ -228,7 +244,8 @@
 
 // Scrollable content area
 .master-overlay-content {
-  padding: .5em 1em 1em 1em;
+  background: none;
+  padding: 0;
   height: 80%;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -251,10 +268,7 @@
 }
 
 .master-overlay-close {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  display: block;
+  float: right;
 }
 
 a.master-overlay-close {
@@ -347,7 +361,7 @@ a.master-overlay-back:hover:before, a.master-overlay-show-parent:hover:before {
 }
 
 .is-master-overlay-parent-hidden {
-  .master-overlay-parent { left:-$facet-overlay-width; }
+  .master-overlay-parent { }
   .master-overlay-main   { left:0%; }
 }
 
@@ -372,15 +386,16 @@ a.master-overlay-back:hover:before, a.master-overlay-show-parent:hover:before {
   margin-bottom: 1em;
 }
 
-$browser-split: 1550px;
+$browser-split: 1000px;
 $parent-split: 1200px;
 
 $main-width: $browser-split * 0.4;
 $parent-width: $parent-split * 0.21;
 
+
 @media (min-width: $browser-split) {
   .master-overlay-main {
-    width: $main-width;
+    width: 100%
   }
 
   .master-overlay-secondary {
@@ -400,8 +415,8 @@ $parent-width: $parent-split * 0.21;
 
 .master-overlay-info .panel-list-meta, .panel-list-meta {
   text-align:right;
-  padding: 0 1.25em;
-  margin: 1em .5em 0 0;
+  padding: 1em;
+  margin: 0;
   font-size: .8em;
   color: #666;
   line-height: 1.5;
@@ -436,5 +451,20 @@ $parent-width: $parent-split * 0.21;
     color: #FFFFFF;
     margin-bottom: 10px;
     word-wrap: break-word;
+  }
+}
+
+.collection-filters {
+  float: left;
+  font-size: 0.8em;
+  margin-left: 20px;
+  padding-top: 12px;
+
+  label {
+    min-width: inherit;
+  }
+
+  select {
+    margin-right: 10px;
   }
 }
