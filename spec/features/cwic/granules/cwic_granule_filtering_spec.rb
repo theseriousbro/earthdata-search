@@ -71,13 +71,13 @@ describe "CWIC Granule list", reset: false do
   context "Filtering out all granules of a CWIC collection" do
     before :all do
       Capybara.reset_sessions!
-      load_page :search, q: 'C1204461918-GCMDTEST', env: :uat
+      load_page :search, q: 'USGS_EDC_EO1_ALI'
     end
 
-    hook_granule_results('AIRCRAFT FLUX-RAW: UNIV. COL. (FIFE)')
+    hook_granule_results('EO-1 (Earth Observing-1) Advanced Land Imager (ALI) Instrument Level 1R, Level 1Gs, Level 1Gst Data')
 
     before :all do
-      expect(page).to have_text("Showing 15 of 15 matching granules")
+      expect(page).to have_text("Showing 20 of 85056 matching granules")
       granule_list.find('.master-overlay-global-actions').click_link('Filter granules')
       fill_in "Start", with: "1960-02-02 00:00:00\t"
       fill_in "End", with: "1960-02-02 23:59:59\t"

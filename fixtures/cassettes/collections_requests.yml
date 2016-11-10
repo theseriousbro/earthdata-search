@@ -3510,6 +3510,21 @@ http_interactions:
   digest: 210e2b95b8f088df64c5160bf17c6f0a9449c4ce
 - request:
     method: get
+    uri: https://cmr.earthdata.nasa.gov/search/collections.json?page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=score&keyword=C1204461918-GCMDTEST%2A&include_has_granules=true&include_granule_counts=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Client-Id:
+      - eed-edsc-dev
+      Echo-ClientId:
+      - eed-edsc-dev
+  recorded_at: Mon, 07 Nov 2016 19:07:57 GMT
+  digest: fcb4e14e8b5b7007049bddb43af3ed606e262927
+- request:
+    method: get
     uri: https://cmr.earthdata.nasa.gov/search/collections.json?page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=score&keyword=C1211793450-PODAAC%2A&include_has_granules=true&include_granule_counts=true
     body:
       encoding: US-ASCII
@@ -4928,6 +4943,21 @@ http_interactions:
       - eed-edsc-dev
   recorded_at: Mon, 06 Jun 2016 22:14:08 GMT
   digest: d2b9008ab23813e26f0847708a4a58e92933235b
+- request:
+    method: get
+    uri: https://cmr.earthdata.nasa.gov/search/collections.json?temporal=1960-01-15T00%3A00%3A00.000Z%2C2016-01-20T23%3A59%3A59.000Z%2C15%2C20&page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=entry_title&include_has_granules=true&include_granule_counts=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Client-Id:
+      - eed-edsc-dev
+      Echo-ClientId:
+      - eed-edsc-dev
+  recorded_at: Sun, 06 Nov 2016 21:23:06 GMT
+  digest: bdbacac2015e4fb2e5e585c6e8894fd4f8ad85da
 - request:
     method: get
     uri: https://cmr.earthdata.nasa.gov/search/collections.json?temporal=1970-12-01T00%3A00%3A00.000Z%2C1975-12-31T00%3A00%3A00.000Z%2C335%2C365&page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=entry_title&echo_collection_id%5B%5D=C1229626387-LANCEMODIS&echo_collection_id%5B%5D=C1219032686-LANCEMODIS&include_has_granules=true&include_granule_counts=true
@@ -6976,6 +7006,21 @@ http_interactions:
   digest: 53556c8d597c8ab95d5f2e6c6023a74e77d49db2
 - request:
     method: get
+    uri: https://cmr.uat.earthdata.nasa.gov/search/collections.json?page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=score&keyword=C1220566654-USGS_LTA%2A&include_has_granules=true&include_granule_counts=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Client-Id:
+      - eed-edsc-dev
+      Echo-ClientId:
+      - eed-edsc-dev
+  recorded_at: Mon, 07 Nov 2016 20:06:17 GMT
+  digest: 2ad7c486728e5f322549175f9100fbdda9e91ba8
+- request:
+    method: get
     uri: https://cmr.uat.earthdata.nasa.gov/search/collections.json?page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=score&keyword=C179002741-ORNL_DAAC%2A&include_has_granules=true&include_granule_counts=true
     body:
       encoding: US-ASCII
@@ -7004,4 +7049,34 @@ http_interactions:
       - eed-edsc-dev
   recorded_at: Mon, 06 Jun 2016 22:07:49 GMT
   digest: a1e0382982fa88f3347c9c9dc7d0a3f85611b54c
+- request:
+    method: get
+    uri: https://cmr.uat.earthdata.nasa.gov/search/collections.json?page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=score&keyword=USGS_EDC_EO1_ALI%2A&include_has_granules=true&include_granule_counts=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Client-Id:
+      - eed-edsc-dev
+      Echo-ClientId:
+      - eed-edsc-dev
+  recorded_at: Thu, 10 Nov 2016 20:25:45 GMT
+  digest: 533832358fd6a748fb7649d2974ec2d3fae5c7f8
+- request:
+    method: get
+    uri: https://cmr.uat.earthdata.nasa.gov/search/collections.json?page_size=20&page_num=1&include_tags=edsc.%2A%2Corg.ceos.wgiss.cwic.granules.prod&sort_key%5B%5D=has_granules&sort_key%5B%5D=score&keyword=doi%3A10.3334%2FORNLDAAC%2F11%2A&include_has_granules=true&include_granule_counts=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.8
+      Client-Id:
+      - eed-edsc-dev
+      Echo-ClientId:
+      - eed-edsc-dev
+  recorded_at: Tue, 08 Nov 2016 20:18:32 GMT
+  digest: 4c11954f191760563d02ff0ee4a5673e4d9527dd
 recorded_with: VCR 2.6.0
