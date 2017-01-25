@@ -10,23 +10,19 @@ describe "Add to project", reset: false do
   context "in the collection results list" do
     it 'displays "Add" buttons for collections not in the current project' do
       within '#collection-results-list > :first-child' do
-        expect(page).to have_link("Add collection to the current project")
-        expect(page).to have_no_link("Remove collection from the current project")
+        expect(page).to have_link("Add to project")
+        expect(page).to have_no_link("Remove from project")
       end
     end
 
     it 'displays "Remove" buttons for collections not in the current project' do
       within '#collection-results-list > :first-child' do
-        click_link "Add collection to the current project"
-        expect(page).to have_no_link("Add collection to the current project")
-        expect(page).to have_link("Remove collection from the current project")
+        click_link "Add to project"
+        expect(page).to have_no_link("Add to project")
+        expect(page).to have_link("Remove from project")
       end
 
       reset_project
-    end
-
-    it 'initially displays information about adding items to projects' do
-      expect(page).to have_text('Add collections to your project to compare and retrieve their data.')
     end
 
     it 'initially displays no link to view the current project' do
@@ -59,12 +55,12 @@ describe "Add to project", reset: false do
 
       it 'updates the button for the collection to be a remove button' do
         panel_list_item = find("#collection-results-list .panel-list-item", text: collection_name)
-        expect(panel_list_item).to have_no_link("Add collection to the current project")
-        expect(panel_list_item).to have_link("Remove collection from the current project")
+        expect(panel_list_item).to have_no_link("Add to project")
+        expect(panel_list_item).to have_link("Remove from project")
       end
 
       it 'displays a summary of the collections in the project' do
-        expect(page).to have_text("You have 1 collection in your project.")
+        expect(page).to have_css("#project-count", :text => "1")
       end
 
       it 'displays a link to view the project' do
@@ -76,8 +72,8 @@ describe "Add to project", reset: false do
       context 'when the removed collection was the last one in the project' do
         before(:all) do
           within '#collection-results-list > :first-child' do
-            click_link "Add collection to the current project"
-            click_link "Remove collection from the current project"
+            click_link "Add to project"
+            click_link "Remove from project"
           end
         end
 
@@ -86,8 +82,7 @@ describe "Add to project", reset: false do
         end
 
         it 'removes the summary of the collections in the project' do
-          expect(page).to have_no_text("You have 1 collection in your project.")
-          expect(page).to have_text('Add collections to your project to compare and retrieve their data.')
+          expect(page).to have_no_css("#project-count", :text => "1")
         end
 
         it 'hides the link to view the project' do
@@ -100,8 +95,8 @@ describe "Add to project", reset: false do
 
         it 'updates the button for the collection to be an add button' do
           within '#collection-results-list > :first-child' do
-            expect(page).to have_link("Add collection to the current project")
-            expect(page).to have_no_link("Remove collection from the current project")
+            expect(page).to have_link("Add to project")
+            expect(page).to have_no_link("Remove from project")
           end
         end
       end
@@ -110,12 +105,12 @@ describe "Add to project", reset: false do
         before(:all) do
           fill_in :keywords, with: 'C179003030-ORNL_DAAC'
           wait_for_xhr
-          target_collection_result.click_link "Add collection to the current project"
+          target_collection_result.click_link "Add to project"
           wait_for_xhr
           fill_in :keywords, with: ' '
           within second_unfeatured_collection do
-            click_link "Add collection to the current project"
-            click_link "Remove collection from the current project"
+            click_link "Add to project"
+            click_link "Remove from project"
           end
         end
 
@@ -126,7 +121,7 @@ describe "Add to project", reset: false do
         end
 
         it 'updates the summary of the collections in the project' do
-          expect(page).to have_text("You have 1 collection in your project.")
+          expect(page).to have_css("#project-count", :text => "1")
           expect(page).to have_no_text('Add collections to your project to compare and retrieve their data.')
         end
 
@@ -140,8 +135,8 @@ describe "Add to project", reset: false do
 
         it 'updates the button for the collection to be an add button' do
           within '#collection-results-list > :nth-child(10)' do
-            expect(page).to have_link("Add collection to the current project")
-            expect(page).to have_no_link("Remove collection from the current project")
+            expect(page).to have_link("Add to project")
+            expect(page).to have_no_link("Remove from project")
           end
         end
       end

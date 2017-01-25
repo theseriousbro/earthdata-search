@@ -102,7 +102,7 @@ module Helpers
     end
 
     def granule_list
-      page.find('#granule-list')
+      page.find('#granules-scroll').find('.panel-list-list')
     end
 
     def first_granule_list_item

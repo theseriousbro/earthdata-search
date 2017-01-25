@@ -16,10 +16,6 @@ describe "System event notification", reset: true do
   end
 
   context "upon loading the search page" do
-    before :each do
-      click_on 'Browse All Data'
-      wait_for_xhr
-    end
 
     it "displays notifications of system events" do
       expect(page).to have_text('LARC-ECS Maintenance')

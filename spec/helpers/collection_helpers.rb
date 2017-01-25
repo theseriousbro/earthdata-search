@@ -25,17 +25,7 @@ module Helpers
     end
 
     def view_granule_results(col_name='15 Minute Stream Flow Data: USGS (FIFE)', from='collection-results')
-      wait_for_xhr
-      overlay = from
-      overlay = 'collection-results' if overlay == 'collection-featured-list'
-      expect(page).to have_visible_overlay(overlay)
-      root = from
-      root = 'collection-results-list' if root == 'collection-results'
-      page.execute_script("$('##{root} .panel-list-item:contains(\"#{col_name}\")').click()")
-      #item.click # This causes intermittent failures based on timing
-      wait_for_xhr
-      wait_for_visualization_load
-      expect(page).to have_visible_granule_list
+      find(".panel-list-item", :text => col_name, :exact => false).find(".button", :text => "View Granules").click
     rescue => e
       Capybara::Screenshot.screenshot_and_save_page
       puts "Visible overlay: #{OverlayUtil::current_overlay_id(page)}"
