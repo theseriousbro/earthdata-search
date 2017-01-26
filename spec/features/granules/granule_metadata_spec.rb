@@ -5,9 +5,11 @@ describe 'Granule metadata' do
     load_page :search
     fill_in 'keywords', with: 'C179003030-ORNL_DAAC'
     wait_for_xhr
-    first_collection_result.click
-    # Select a specific granule
-    click_link 'Filter granules'
+    find(".panel-list-item").find(".button", :text => "View Granules").click
+    
+    within(page.find('.master-overlay-global-actions.actions')) do
+      click_on 'Filter granules'
+    end
     fill_in 'granule_id', with: 'FIFE_STRM_15M.80611715.s15'
     click_button 'Apply'
     wait_for_xhr

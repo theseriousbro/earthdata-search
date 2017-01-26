@@ -7,7 +7,6 @@ describe "CWIC-enabled granule results view", reset: false do
     Capybara.reset_sessions!
     load_page :search, q: 'USGS_EDC_EO1_ALI'
     view_granule_results("EO-1 (Earth Observing-1) Advanced Land Imager (ALI) Instrument Level 1R, Level 1Gs, Level 1Gst Data")
-    # first_granule_list_item.click_link('View granule details')
     within(first_granule_list_item) do
       click_on 'View granule details'
     end
@@ -33,7 +32,6 @@ describe "CWIC-enabled granule results view", reset: false do
         before :all do
           click_link 'Metadata'
           find("#granule-metadata").find("a", :text => "Native").click
-          # click_on 'Native'
         end
 
         after :all do

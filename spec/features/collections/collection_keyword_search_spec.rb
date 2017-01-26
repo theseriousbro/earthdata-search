@@ -54,7 +54,11 @@ describe "Collection keyword searches", reset: false do
         target_collection_result.click_link "Add collection to the current project"
         collection_results.click_link "View Project"
         view_granule_results('15 Minute Stream Flow Data: USGS (FIFE)', 'project-overview')
-        granule_list.click_link('Filter granules')
+        
+        within(page.find('.master-overlay-global-actions.actions')) do
+          click_on 'Filter granules'
+        end
+
         first_granule_list_item.click_link('View granule details')
         expect(page).to have_content('Find only granules that have browse images.')
       end
@@ -109,7 +113,9 @@ describe "Collection keyword searches", reset: false do
 
       before(:all) do
         view_granule_results
-        granule_list.click_link('Filter granules')
+        within(page.find('.master-overlay-global-actions actions')) do
+          click_on 'Filter granules'
+        end
         first_granule_list_item.click_link('View granule details')
         expect(page).to have_content('Find only granules that have browse images.')
       end
