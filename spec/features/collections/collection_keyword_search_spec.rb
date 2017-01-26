@@ -55,9 +55,7 @@ describe "Collection keyword searches", reset: false do
         collection_results.click_link "View Project"
         view_granule_results('15 Minute Stream Flow Data: USGS (FIFE)', 'project-overview')
         
-        within(page.find('.master-overlay-global-actions.actions')) do
-          click_on 'Filter granules'
-        end
+        click_on 'Filter granules'
 
         first_granule_list_item.click_link('View granule details')
         expect(page).to have_content('Find only granules that have browse images.')
