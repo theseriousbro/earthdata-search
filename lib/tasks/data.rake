@@ -27,7 +27,7 @@ namespace :data do
     end
 
     def task_wrapper(task, interval, &block)
-      # There are two hosts in production. We need to make sure the rake tasks are run on both of them.
+      # There are two hosts in production and UAT. We need to make sure the rake tasks are run on both of them.
       # However too many requests sent from both of the hosts at the same time every hour time out due to the heavy load
       # on CMR side. We therefore alternate the cron jobs in OPS to fire only from one host at a time.
 
@@ -38,7 +38,7 @@ namespace :data do
       #     else run the cron job
       # if no entries in the past (1.5 * interval) found, wait and re-check for ten times
 
-      if Rails.env.production?
+      if Rails.env.production? || Rails.env.uat?
         tried = 0
         while tried < 10 do
           history_tasks = CronJobHistory.where(task_name: task, last_run: (Time.now - 1.5 * interval)..Time.now)
