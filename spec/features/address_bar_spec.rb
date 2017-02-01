@@ -32,7 +32,7 @@ describe 'Address bar', reset: false do
     end
 
     context 'clearing filters' do
-      before(:all) { click_link "Clear Filters" }
+      before(:all) { click_link "Clear filters" }
 
       it 'removes the keyword condition from the address bar' do
         expect(page).to have_query_string(nil)
@@ -97,7 +97,7 @@ describe 'Address bar', reset: false do
     end
 
     it 'displays the temporal on the map' do
-      expect(page.find('#temporal-query')).to have_text('Start 12-01 00:00:00 Stop 12-31 00:00:00 Range 1970 - 1975')
+      expect(page.find('#temporal-query')).to have_text('Start: 12-01 00:00:00 Stop: 12-31 00:00:00 Range: 1970 - 1975')
     end
 
     it 'filters collections using the condition' do
@@ -118,7 +118,7 @@ describe 'Address bar', reset: false do
     end
 
     context 'clearing filters' do
-      before(:all) { click_link "Clear Filters" }
+      before(:all) { click_link "Clear filters" }
 
       it 'removes the spatial condition from the address bar' do
         expect(page).to have_query_string(nil)
@@ -152,7 +152,7 @@ describe 'Address bar', reset: false do
     end
 
     context 'clearing filters' do
-      before(:all) { click_link "Clear Filters" }
+      before(:all) { click_link "Clear filters" }
 
       it 'removes the facet condition from the address bar' do
         expect(page).to have_query_string('cmr_env=sit&test_facets=true')
@@ -180,11 +180,11 @@ describe 'Address bar', reset: false do
       visit '/search/collections'
       add_collection_to_project('C179001887-SEDAC', '2000 Pilot Environmental Sustainability Index (ESI)')
       add_collection_to_project('C179002914-ORNL_DAAC', '30 Minute Rainfall Data (FIFE)')
-      click_link "Clear Filters"
+      click_link "Clear filters"
     end
 
     it 'saves the project in the address bar' do
-      expect(page).to have_query_string('p=!C179001887-SEDAC!C179002914-ORNL_DAAC')
+      expect(page).to have_query_string('p=C179002914-ORNL_DAAC!C179001887-SEDAC!C179002914-ORNL_DAAC')
     end
   end
 
@@ -244,7 +244,9 @@ describe 'Address bar', reset: false do
       wait_for_xhr
       first_collection_result.click
       wait_for_xhr
-      first_granule_list_item.click_link 'View granule details'
+      within(first_granule_list_item) do
+        click_on 'View granule details'
+      end
       wait_for_xhr
     end
 
@@ -426,7 +428,7 @@ describe 'Address bar', reset: false do
     end
 
     it "saves the selected granule in the URL" do
-      expect(page).to have_query_string('p=C179003030-ORNL_DAAC&g=G179111300-ORNL_DAAC&m=39.1019!-97.72!7!1!0!0%2C2')
+      expect(page).to have_query_string('p=C179003030-ORNL_DAAC&g=G179111300-ORNL_DAAC&m=39.1019!-96.595!7!1!0!0%2C2')
     end
   end
 

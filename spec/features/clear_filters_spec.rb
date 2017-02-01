@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe "'Clear Filters' button", reset: false do
+describe "'Clear filters' button", reset: false do
   before :all do
     load_page :search, facets: true, env: :sit
   end
@@ -11,7 +11,7 @@ describe "'Clear Filters' button", reset: false do
     fill_in "keywords", with: "AST_L1A"
     expect(page).to have_content('ASTER L1A')
 
-    click_link "Clear Filters"
+    click_link "Clear filters"
     expect(page).to have_no_content('ASTER L1A')
     expect(page.find("#keywords")).to have_no_text("AST_L1A")
   end
@@ -21,7 +21,7 @@ describe "'Clear Filters' button", reset: false do
     expect(page).to have_no_content("A minimal dif dataset")
     expect(page).to have_content("ADVANCED MICROWAVE SOUNDING UNIT-A (AMSU-A) SWATH FROM NOAA-15 V1")
 
-    click_link "Clear Filters"
+    click_link "Clear filters"
     expect(page).to have_content("A minimal dif dataset")
     expect(page).to have_content("ADVANCED MICROWAVE SOUNDING UNIT-A (AMSU-A) SWATH FROM NOAA-15 V1")
   end
@@ -30,7 +30,7 @@ describe "'Clear Filters' button", reset: false do
     after :each do
       # close temporal dropdown
       click_link "Temporal"
-      click_link "Clear Filters"
+      click_link "Clear filters"
       wait_for_xhr
     end
 
@@ -45,7 +45,7 @@ describe "'Clear Filters' button", reset: false do
 
       expect(page).to have_no_content("A minimal dif dataset")
 
-      click_link "Clear Filters"
+      click_link "Clear filters"
 
       fill_in "keywords", with: 'C1000000083-DEMO_PROV'
       expect(page).to have_content("A minimal dif dataset")
@@ -66,7 +66,7 @@ describe "'Clear Filters' button", reset: false do
       fill_in "keywords", with: 'C1000001409-EDF_OPS'
       expect(page).to have_no_content("MEaSUREs Arctic Sea Ice Characterization Daily 25km EASE-Grid 2.0 V001")
 
-      click_link "Clear Filters"
+      click_link "Clear filters"
       wait_for_xhr
       fill_in "keywords", with: 'C1000001409-EDF_OPS'
       expect(page).to have_content("MEaSUREs Arctic Sea Ice Characterization Daily 25km EASE-Grid 2.0 V001")
@@ -86,7 +86,7 @@ describe "'Clear Filters' button", reset: false do
       expect(page).to have_css(".facets-item.selected")
     end
 
-    click_link "Clear Filters"
+    click_link "Clear filters"
 
     expect(page).to have_no_css(".facets-item.selected")
   end
