@@ -23,8 +23,10 @@ describe "Timeline temporal selection", reset: false do
     load_page :search
     add_collection_to_project('C179002914-ORNL_DAAC', '30 Minute Rainfall Data (FIFE)')
     add_collection_to_project('C179003030-ORNL_DAAC', '15 Minute Stream Flow Data: USGS (FIFE)')
-
-    collection_results.click_link "View Project"
+    wait_for_xhr
+    click_link("View Project")
+    wait_for_xhr
+    expect(page).to have_link('Back to Collection Search')
     zoom_out_button = find('.timeline-zoom-out')
     zoom_out_button.click
     pan_to_time(present - 25.years)
@@ -34,6 +36,8 @@ describe "Timeline temporal selection", reset: false do
 
   context 'when temporal conditions are set outside of the timeline' do
     before :all do
+
+
       set_temporal(local_start_date, local_stop_date, nil, 0)
       set_temporal(global_start_date, global_stop_date)
     end

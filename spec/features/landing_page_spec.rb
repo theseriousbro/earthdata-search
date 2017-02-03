@@ -12,7 +12,6 @@ describe 'Site landing page' do
   it "displays a simplified search interface" do
     expect(page).to have_link('Temporal')
     expect(page).to have_link('Spatial')
-    expect(page).to have_no_link('Clear Filters')
   end
 
   it 'reveals the full search interface when the user enters a keyword and presses "enter"' do
@@ -20,17 +19,7 @@ describe 'Site landing page' do
     keypress_script = "var e = $.Event('keypress', { which: 13 }); $('#keywords').trigger(e); null;"
     page.execute_script(keypress_script)
 
-    expect(page).to have_link('Clear Filters')
-  end
-
-  it 'does not reveal the full search interface when the user enters a keyword without pressing "enter"' do
-    fill_in "keywords", with: "A"
-    expect(page).to have_no_link('Clear Filters')
-  end
-
-  it 'reveals the full search interface when the user clicks "Browse All Data"' do
-    click_link "Browse All Data"
-    expect(page).to have_link('Clear Filters')
+    expect(page).to have_link('Clear filters')
   end
 
   it "reveals the full search interface when the user applies a temporal filter" do
@@ -38,26 +27,19 @@ describe 'Site landing page' do
     fill_in "End", with: "2013-12-01 00:00:00"
     # Do this in Javascript because of capybara clickfailed bug
     page.execute_script("$('#temporal-submit:visible').click()")
-    expect(page).to have_link('Clear Filters')
+    expect(page).to have_link('Clear filters')
   end
 
   it "reveals the full search interface when the user selects a spatial tool" do
     click_link "Spatial"
     # Do this in Javascript because of capybara clickfailed bug
     page.execute_script("$('.dropdown-menu .select-point:visible').click()")
-    expect(page).to have_link('Clear Filters')
+    expect(page).to have_link('Clear filters')
   end
 
   it 'reveals the full search interface when the user loads  "/search" directly' do
     load_page :search
-    expect(page).to have_link('Clear Filters')
-  end
-
-  it 'goes back to the landing page when the user clicks the site logo from the search page' do
-    load_page :search
-    expect(page).to have_link('Clear Filters')
-    click_link 'Earthdata Search Home'
-    expect(page).to have_no_link('Clear Filters')
+    expect(page).to have_link('Clear filters')
   end
 
   it 'displays the current NASA official' do

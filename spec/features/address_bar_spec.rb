@@ -447,7 +447,7 @@ describe 'Address bar', reset: false do
   end
 
   context "Long URLs" do
-    let(:long_path) { '/search/collections?p=!C179001887-SEDAC!C1000000220-SEDAC!C179001967-SEDAC!C179001889-SEDAC!C179001707-SEDAC&q=C179003030-ORNL_DAAC&ok=C179003030-ORNL_DAAC' }
+    let(:long_path) { '/search/collections?p=C179003030-ORNL_DAAC!C179001887-SEDAC!C1000000220-SEDAC!C179001967-SEDAC!C179001889-SEDAC!C179001707-SEDAC!C179003030-ORNL_DAAC&q=C179003030-ORNL_DAAC&ok=C179003030-ORNL_DAAC' }
     let(:longer_path) { long_path.gsub('!C179001707-SEDAC&', '!C179001707-SEDAC!C179003030-ORNL_DAAC&') }
     let(:query_re) { /^projectId=(\d+)$/ }
 

@@ -52,12 +52,13 @@ describe "Collection keyword searches", reset: false do
 
       before(:all) do
         target_collection_result.click_link "Add collection to the current project"
-        collection_results.click_link "View Project"
-        view_granule_results('15 Minute Stream Flow Data: USGS (FIFE)', 'project-overview')
-        
+        click_on 'View Project'
+        wait_for_xhr
+        view_granule_results('15 Minute Stream Flow Data: USGS (FIFE)')
         click_on 'Filter granules'
-
-        first_granule_list_item.click_link('View granule details')
+        first_granule_list_item.find_link('View granule details', "title").click
+        wait_for_xhr
+        
         expect(page).to have_content('Find only granules that have browse images.')
       end
 
@@ -97,6 +98,7 @@ describe "Collection keyword searches", reset: false do
         context "and clicking on the first collection result" do
           before(:all) do
             view_granule_results('ASTER L1A Reconstructed Unprocessed Instrument Data V003')
+            wait_for_xhr
           end
 
           it "shows the collection's granules" do
@@ -111,10 +113,8 @@ describe "Collection keyword searches", reset: false do
 
       before(:all) do
         view_granule_results
-        within(page.find('.master-overlay-global-actions actions')) do
-          click_on 'Filter granules'
-        end
-        first_granule_list_item.click_link('View granule details')
+        click_on 'Filter granules'
+        first_granule_list_item.find_link('View granule details', "title").click
         expect(page).to have_content('Find only granules that have browse images.')
       end
 
@@ -153,8 +153,9 @@ describe "Collection keyword searches", reset: false do
         context "and clicking on the first collection result" do
           before(:all) do
             view_granule_results('ASTER L1A Reconstructed Unprocessed Instrument Data V003')
+            wait_for_xhr
           end
-
+          
           it "shows the collection's granules" do
             expect(page).to have_visible_granule_list
           end
