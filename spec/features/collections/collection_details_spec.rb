@@ -121,7 +121,7 @@ describe 'Collection details', reset: false do
 
   context "when selecting a collection with multiple temporal" do
     before :all do
-      load_page '/search/collection-details', env: :uat, focus: 'C1204482909-GCMDTEST'
+      visit '/search/collection-details?p=C1204482909-GCMDTEST&cmr_env=uat'
       expect(page).to have_content('CALIPSO Lidar Level 2 5km aerosol profile data V3-01')
     end
 
