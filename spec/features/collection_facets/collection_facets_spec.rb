@@ -483,7 +483,7 @@ describe "Collection Facets", reset: false do
       expect(page).to have_no_content("Keywords")
       expect(page).to have_no_content("Platforms")
 
-      click_link "Clear Filters"
+      click_link "Clear filters"
       wait_for_xhr
     end
 

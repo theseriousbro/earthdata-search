@@ -90,7 +90,8 @@ describe "Collections Collapsed View", reset: false do
         use_collection 'C1000000083-DEMO_PROV', 'minimal_dif_dataset'
 
         before :all do
-          view_granule_results('A minimal dif dataset')
+          view_minimized_granule_results('C1000000083-DEMO_PROV')
+          wait_for_xhr
         end
 
         it "shows the collection's granule list" do
@@ -160,7 +161,7 @@ describe "Collections Collapsed View", reset: false do
 
       context "and hovering a collection's add to project button" do
         before :all do
-          first_collapsed_collection.find('a.add-to-project').trigger(:mouseover)
+          first_collapsed_collection.first('.add-to-project').trigger(:mouseover)
           wait_for_xhr
         end
 
@@ -170,7 +171,7 @@ describe "Collections Collapsed View", reset: false do
 
         context "followed by un-hovering the add to project button" do
           before :all do
-            first_collapsed_collection.find('a.add-to-project').trigger(:mouseout)
+            first_collapsed_collection.first('.add-to-project').trigger(:mouseout)
             wait_for_xhr
           end
 
@@ -217,7 +218,8 @@ describe "Collections Collapsed View", reset: false do
           end
 
           after :all do
-            first_collapsed_collection.find('a.add-to-project').click
+            #first_collapsed_collection.find('a.add-to-project').click
+            first_collapsed_collection.first('.add-to-project').click
             wait_for_xhr
           end
 

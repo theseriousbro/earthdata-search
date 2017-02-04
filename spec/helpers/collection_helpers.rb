@@ -36,6 +36,10 @@ module Helpers
       raise e
     end
 
+    def view_minimized_granule_results(col_name='15 Minute Stream Flow Data: USGS (FIFE)')
+      page.execute_script ("$(\"#" + col_name + "-map\").click()")
+    end
+
     def leave_granule_results(to='collection-results')
       wait_for_xhr
       expect(page).to have_visible_granule_list

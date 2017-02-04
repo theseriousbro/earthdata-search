@@ -50,14 +50,12 @@ describe "Timeline display", reset: false do
     end
 
     it 'does not display collections without granules' do
-      wait_for_xhr
       timeline = page.find('#timeline svg')
 
       expect(timeline).to have_no_selector('.C179001887-SEDAC')
     end
 
     it 'does not display more than three collections' do
-      wait_for_xhr
       timeline = page.find('#timeline svg')
       expect(timeline).to have_no_selector('.C191370861-GSFCS4PA')
     end
@@ -110,7 +108,6 @@ describe "Timeline display", reset: false do
   context 'in the granule result list, coming from the project' do
     before :all do
       add_collection_to_project('C179003030-ORNL_DAAC', '15 Minute Stream Flow Data: USGS (FIFE)')
-
       click_link("View Project")
       view_granule_results('15 Minute Stream Flow Data: USGS (FIFE)', 'project-overview')
     end
@@ -118,12 +115,10 @@ describe "Timeline display", reset: false do
     after :all do
       leave_granule_results('project-overview')
       click_link('Back to Collection Search')
-      Capybara.reset_sessions!
       reset_project
     end
 
     it 'displays a timeline for the single focused collection' do
-      wait_for_xhr
       timeline = page.find('#timeline svg')
       expect(timeline).to have_selector('.C179003030-ORNL_DAAC')
     end
