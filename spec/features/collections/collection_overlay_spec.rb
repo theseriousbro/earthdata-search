@@ -25,7 +25,6 @@ describe 'Collections overlay', :reset => false do
       second_collection_result.click_link "Add collection to the current project"
       find_by_id("view-project").click
       wait_for_xhr
-      Capybara::Screenshot.screenshot_and_save_page
       click_on 'Back to Collection Search'
     end
 

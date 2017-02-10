@@ -218,7 +218,6 @@ describe "Collections Collapsed View", reset: false do
           end
 
           after :all do
-            #first_collapsed_collection.find('a.add-to-project').click
             first_collapsed_collection.first('.add-to-project').click
             wait_for_xhr
           end

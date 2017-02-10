@@ -1,15 +1,17 @@
 require 'spec_helper'
 
 describe 'Granule details', reset: false do
-  it 'displays the granule details' do
+  before(:all) do
+    Capybara.reset_sessions!
     load_page :search
+  end
+  it 'displays the granule details' do
     fill_in 'keywords', with: 'C179003030-ORNL_DAAC'
     wait_for_xhr
     expect(page).to have_content('15 Minute Stream Flow Data: USGS (FIFE)')
-    first_collection_result.click
-    wait_for_xhr
+    view_granule_results('15 Minute Stream Flow Data: USGS (FIFE)')
     # Select a specific granule
-    click_link 'Filter granules'
+    click_on 'Filter granules'
     fill_in 'granule_id', with: 'FIFE_STRM_15M.80611715.s15'
     click_button 'Apply'
     wait_for_xhr

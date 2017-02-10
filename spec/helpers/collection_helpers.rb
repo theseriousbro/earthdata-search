@@ -27,9 +27,7 @@ module Helpers
     def view_granule_results(col_name='15 Minute Stream Flow Data: USGS (FIFE)', from='collection-results')
       find("h3", :text => col_name, :exact => true).find(:xpath, '../..').find(".button", :text => "View Granules").click
       wait_for_xhr
-      wait_for_visualization_load
-      expect(page).to have_visible_granule_list
-
+      expect(page).to have_selector('#granules-scroll', visible: true)
     rescue => e
       Capybara::Screenshot.screenshot_and_save_page
       puts "Visible overlay: #{OverlayUtil::current_overlay_id(page)}"
@@ -42,9 +40,8 @@ module Helpers
 
     def leave_granule_results(to='collection-results')
       wait_for_xhr
-      expect(page).to have_visible_granule_list
+      expect(page).to have_selector('#granules-scroll', visible: true)
       page.execute_script("$('#granule-list a.master-overlay-back').click()")
-      #find('#granule-list').click_link('Back to Collections')
       wait_for_xhr
       wait_for_visualization_unload
       expect(page).to have_visible_overlay(to)
