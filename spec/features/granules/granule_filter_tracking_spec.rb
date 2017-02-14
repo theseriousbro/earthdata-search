@@ -21,7 +21,7 @@ describe "Granule filter tracking", reset: false do
 
     context 'completely removing the collection from all views' do
       before :all do
-        target_collection_result.click_link "Remove collection from the current project"
+        target_collection_result.click_link "Remove from project"
         fill_in :keywords, with: 'asdfasdfasdfasdfasdf'
         wait_for_xhr
       end
@@ -53,11 +53,12 @@ describe "Granule filter tracking", reset: false do
     before :all do
       load_page :search, q: 'C179003030-ORNL_DAAC', project: ['C179003030-ORNL_DAAC']
       wait_for_xhr
+      Capybara::Screenshot.screenshot_and_save_page
     end
 
     context 'completely removing the collection from all views' do
       before :all do
-        target_collection_result.click_link "Remove collection from the current project"
+        target_collection_result.click_link "Remove from project"
         fill_in :keywords, with: 'asdfasdfasdfasdfasdf'
         wait_for_xhr
       end
@@ -68,6 +69,7 @@ describe "Granule filter tracking", reset: false do
       end
 
       it 'forgets the collection' do
+
         synchronize do
           has_reference = page.evaluate_script(has_reference_script)
           expect(has_reference).to be_false

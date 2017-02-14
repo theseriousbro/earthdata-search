@@ -18,24 +18,24 @@ describe "Granule list", reset: false do
     hook_granule_results('MODIS/Terra Snow Cover Daily L3 Global 500m SIN Grid V005')
 
     it "provides a button to get collection details" do
-      expect(granule_list).to have_link('View collection details')
+      expect(page).to have_link('View collection details', "title")
     end
 
     it "provides a button to get download the collection" do
-      expect(granule_list).to have_link('Retrieve collection data')
+      expect(page).to have_link('Retrieve collection data', "title")
     end
 
     it "provides a button to edit granule filters" do
-      expect(granule_list).to have_link('Filter granules')
+      expect(page).to have_link('Filter granules', "title")
     end
 
     context "clicking on the collection details button" do
       before :all do
-        granule_list.find('.master-overlay-global-actions').click_link('View collection details')
+        page.execute_script("$('a[title=\"View collection details\"]').click")
       end
 
       after :all do
-        collection_details.click_link('Back to Granules')
+        click_on "Back to Granules"
       end
 
       it "displays the collection details" do
@@ -44,13 +44,13 @@ describe "Granule list", reset: false do
       end
 
       it "displays back navigation with the appropriate text" do
-        expect(collection_details).to have_link('Back to Granules')
+        expect(page).to have_link('Back to Granules')
       end
     end
 
     context "clicking on the download button" do
       before :all do
-        granule_list.find('.master-overlay-global-actions').click_link('Retrieve collection data')
+        page.execute_script("$('a[title=\"Retrieve collection data\"]').click")
       end
 
       after :all do
@@ -64,7 +64,7 @@ describe "Granule list", reset: false do
 
     context "clicking on the edit filters button" do
       before :all do
-        granule_list.click_link('Filter granules')
+        find_link('Filter granules', "title").click
       end
 
       after :all do
@@ -85,7 +85,7 @@ describe "Granule list", reset: false do
         end
 
         it "shows the filters in an applied state" do
-          expect(granule_list).to have_selector('.button-highlighted[title="Hide granule filters"]')
+          expect(page).to have_selector('.button-highlighted[title="Hide granule filters"]')
         end
       end
     end
@@ -141,7 +141,7 @@ describe "Granule list", reset: false do
 
       context "and clicking the undo button" do
         before :all do
-          click_link "Undo"
+          page.execute_script("$('a[title=\"Undo\"]').click")
         end
 
         after :all do
@@ -160,16 +160,16 @@ describe "Granule list", reset: false do
 
       context "and changing granule query" do
         before :all do
-          click_link "Filter granules"
+          click_on "Filter granules"
           check "Find only granules that have browse images."
           wait_for_xhr
         end
 
         after :all do
           uncheck "Find only granules that have browse images."
-          click_link "Add it back"
+          click_on "Add it back"
           wait_for_xhr
-          click_link 'Hide granule filters'
+          click_on 'Hide granule filters'
           first_granule_list_item.click
           first_granule_list_item.click_link "Exclude this granule"
           wait_for_xhr

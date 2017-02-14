@@ -17,7 +17,7 @@ describe "Granule result removal", reset: false do
     end
 
     it "updates the page's hits count" do
-      expect(granule_list).to have_content("Showing 19 of 38 matching granules")
+      expect(page).to have_content("Showing 19 of 38 matching granules")
     end
 
     it "focuses the next granule in the list" do
