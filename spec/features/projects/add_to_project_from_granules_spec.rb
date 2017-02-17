@@ -7,7 +7,7 @@ describe 'Add to project', reset: false do
       load_page :search
       fill_in 'keywords', with: 'C179003030-ORNL_DAAC'
       wait_for_xhr
-      first_collection_result.click
+      view_granule_results('15 Minute Stream Flow Data: USGS (FIFE)')
       wait_for_xhr
     end
 
@@ -67,7 +67,6 @@ describe 'Add to project', reset: false do
 
         it 'removes the summary of the collections in the project' do
           expect(page).to have_no_text("You have 1 collection in your project.")
-          expect(page).to have_text('Add collections to your project to compare and retrieve their data.')
         end
 
         it 'hides the link to view the project' do

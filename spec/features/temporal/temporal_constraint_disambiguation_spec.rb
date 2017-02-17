@@ -14,7 +14,7 @@ describe "Temporal constraint disambiguation", reset: true do
     zoom_out_button.click
     pan_to_time(present - 20.years)
     wait_for_xhr
-    expect(granule_list).to have_text('Showing 20 of 39 matching granules')
+    expect(page).to have_text('Showing 20 of 39 matching granules')
   end
 
   context 'when a temporal constraint is set and no date is focused' do

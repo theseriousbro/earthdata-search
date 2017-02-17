@@ -40,6 +40,7 @@ describe "Granule selection", reset: false do
 
   before :all do
     load_page :search, bounding_box: [0, 0, 15, 15], focus: 'C90757595-LAADS'
+    view_granule_results("MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km V005")
   end
 
   context "clicking on a granule in the result list" do

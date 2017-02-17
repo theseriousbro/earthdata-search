@@ -73,9 +73,16 @@ class CollectionDetailsPresenter < DetailsPresenter
     if hash
       contact_list = Array.wrap(hash.map do |contact_person|
         person = contact_person['ContactPersons']
+        
         if person && person['ContactPerson']
-          first_name = person['ContactPerson']['FirstName'] unless person['ContactPerson']['FirstName'].downcase == 'unknown'
-          last_name = person['ContactPerson']['LastName'] unless person['ContactPerson']['LastName'].downcase == 'unknown'
+          contact = person['ContactPerson']
+          if contact.class == Hash
+            first_name = contact['FirstName'] unless contact['FirstName'].downcase == 'unknown'
+            last_name = contact['LastName'] unless contact['LastName'].downcase == 'unknown'
+          else #it's an array
+            first_name = contact[0]['FirstName'] unless contact[0]['FirstName'].downcase == 'unknown'
+            last_name = contact[0]['LastName'] unless contact[0]['LastName'].downcase == 'unknown'
+          end
           name = "#{first_name}#{(first_name.nil? || last_name.nil?) ? '' : ' '}#{last_name}"
         else
           name = contact_person['OrganizationName'] || nil

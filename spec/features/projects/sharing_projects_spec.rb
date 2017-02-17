@@ -24,7 +24,7 @@ describe "Sharing Projects", reset: false do
     end
 
     it "shows the contents of the project" do
-      expect(page).to have_content 'You have 2 collections in your project'
+      find('#project-count').should have_content('2')
     end
 
     it "inflates the url" do
@@ -54,7 +54,7 @@ describe "Sharing Projects", reset: false do
     end
 
     it "shows the contents of the project" do
-      expect(page).to have_content 'You have 8 collections in your project'
+      find('#project-count').should have_content('8')
     end
 
     it "saves the path into a new project for the new user" do

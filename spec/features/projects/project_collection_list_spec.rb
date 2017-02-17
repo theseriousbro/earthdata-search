@@ -7,7 +7,7 @@ describe "Project collection list", reset: true do
     target_collection_result.click_link "Add collection to the current project"
     target_collection_result('30 Minute Rainfall Data (FIFE)').click_link "Add collection to the current project"
 
-    collection_results.click_link "View Project"
+    find_by_id("view-project").click
   end
 
   after(:each) do

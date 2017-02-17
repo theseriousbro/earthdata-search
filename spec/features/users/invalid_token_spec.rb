@@ -17,7 +17,7 @@ describe 'Invalid user token', reset: false do
     end
 
     it 'logs out the user' do
-      expect(page).to have_content 'Earthdata Login'
+      expect(page).to have_link('Login')
     end
 
     it 'displays search results' do

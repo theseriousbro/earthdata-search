@@ -27,7 +27,7 @@ describe "Timeline date selection", reset: false do
     zoom_out_button.click
     pan_to_time(present - 20.years)
     wait_for_xhr
-    expect(granule_list).to have_text('Showing 20 of 39 matching granules')
+    expect(page).to have_text('Showing 20 of 39 matching granules')
   end
 
   context 'when a temporal constraint is set' do
@@ -123,16 +123,16 @@ describe "Timeline date selection", reset: false do
     end
 
     it "shows only granules within that time span" do
-      expect(granule_list).to have_text('Showing 12 of 12 matching granules')
+      expect(page).to have_text('Showing 12 of 12 matching granules')
     end
 
 
     it "indicates that not all granule results are being shown" do
-      expect(granule_list).to have_text('for the selected year')
+      expect(page).to have_text('for the selected year')
     end
 
     it "provides a link to show all granules" do
-      expect(granule_list).to have_link('Show All')
+      expect(page).to have_link('Show All')
     end
 
     context "pressing the left arrow key" do
@@ -170,15 +170,15 @@ describe "Timeline date selection", reset: false do
       end
 
       it "shows all granule results" do
-        expect(granule_list).to have_text('Showing 20 of 39 matching granules')
+        expect(page).to have_text('Showing 20 of 39 matching granules')
       end
 
       it "removes the message indicating not all granule results are being shown" do
-        expect(granule_list).to have_no_text('for the selected year')
+        expect(page).to have_no_text('for the selected year')
       end
 
       it "removes the link to show all granules" do
-        expect(granule_list).to have_no_link('Show All')
+        expect(page).to have_no_link('Show All')
       end
     end
 
@@ -236,7 +236,7 @@ describe "Timeline date selection", reset: false do
       # end
 
       it "removes the message indicating not all granule results are being shown" do
-        expect(granule_list).to have_no_text('for the selected year')
+        expect(page).to have_no_text('for the selected year')
       end
 
       # OBE since EDSC-520
@@ -280,7 +280,7 @@ describe "Timeline date selection", reset: false do
 
       it "maintains the selected time span" do
         wait_for_xhr
-        expect(granule_list).to have_text('Showing 12 of 12 matching granules')
+        expect(page).to have_text('Showing 12 of 12 matching granules')
       end
     end
 
@@ -297,15 +297,15 @@ describe "Timeline date selection", reset: false do
       end
 
       it "shows all granule results" do
-        expect(granule_list).to have_text('Showing 20 of 39 matching granules')
+        expect(page).to have_text('Showing 20 of 39 matching granules')
       end
 
       it "removes the message indicating not all granule results are being shown" do
-        expect(granule_list).to have_no_text('for the selected year')
+        expect(page).to have_no_text('for the selected year')
       end
 
       it "removes the link to show all granules" do
-        expect(granule_list).to have_no_link('Show All')
+        expect(page).to have_no_link('Show All')
       end
     end
 
@@ -318,15 +318,15 @@ describe "Timeline date selection", reset: false do
       end
 
       it "shows only granules within the new time span" do
-        expect(granule_list).to have_text('Showing 4 of 4 matching granules')
+        expect(page).to have_text('Showing 4 of 4 matching granules')
       end
 
       it "indicates that not all granule results are being shown" do
-        expect(granule_list).to have_text('for the selected year')
+        expect(page).to have_text('for the selected year')
       end
 
       it "provides a link to show all granules" do
-        expect(granule_list).to have_link('Show All')
+        expect(page).to have_link('Show All')
       end
     end
   end

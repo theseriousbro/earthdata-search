@@ -9,7 +9,7 @@ describe "Spatial tool", reset: false do
   end
 
   let(:spatial_dropdown) do
-    page.find('#main-toolbar .spatial-dropdown-button')
+    page.find('.spatial-selection', visible: false)
   end
 
   let(:point_button)     { page.find('#map .leaflet-draw-draw-marker') }
@@ -20,7 +20,6 @@ describe "Spatial tool", reset: false do
     context "when no tool is currently selected" do
       context "choosing the point selection tool from the site toolbar" do
         before(:each) { choose_tool_from_site_toolbar('Point') }
-
         it "selects the point selection tool in both toolbars" do
           expect(spatial_dropdown).to have_text('Point')
           expect(point_button).to have_class('leaflet-draw-toolbar-button-enabled')
@@ -28,7 +27,7 @@ describe "Spatial tool", reset: false do
       end
 
       context "choosing the point selection tool from the map toolbar" do
-        before(:each) { choose_tool_from_map_toolbar('Point') }
+        before(:each) { choose_tool_from_map_toolbar('Select Point') }
 
         it "selects the point selection tool in both toolbars" do
           expect(spatial_dropdown).to have_text('Point')
@@ -37,7 +36,7 @@ describe "Spatial tool", reset: false do
       end
     end
     context "when another tool is currently selected" do
-      before(:each) { choose_tool_from_map_toolbar('Rectangle') }
+      before(:each) { choose_tool_from_map_toolbar('Select Rectangle') }
 
       context "choosing the point selection tool in the site toolbar" do
         before(:each) { choose_tool_from_site_toolbar('Point') }
@@ -49,7 +48,7 @@ describe "Spatial tool", reset: false do
       end
 
       context "choosing the point selection tool in the map toolbar" do
-        before(:each) { choose_tool_from_map_toolbar('Point') }
+        before(:each) { choose_tool_from_map_toolbar('Select Point') }
 
         it "selects the point selection tool in both toolbars" do
           expect(spatial_dropdown).to have_text('Point')
@@ -61,7 +60,7 @@ describe "Spatial tool", reset: false do
     context "choosing a tool when a point is already selected" do
       before(:each) do
         create_point
-        choose_tool_from_map_toolbar('Rectangle')
+        choose_tool_from_map_toolbar('Select Rectangle')
       end
 
       it "removes the point from the map" do
@@ -83,14 +82,14 @@ describe "Spatial tool", reset: false do
 
     context "canceling the point selection in the toolbar" do
       before(:each) do
-        choose_tool_from_map_toolbar('Point')
+        choose_tool_from_map_toolbar('Select Point')
         within "#map" do
-          click_link "Cancel"
+          page.execute_script("$('a[title=\"Remove spatial constraint\"]').click")
         end
       end
 
       it "deselects the point selection tool in the site toolbar" do
-        expect(spatial_dropdown).to have_text('Spatial')
+        expect(page).not_to have_link("Remove spatial contraint", "title")
       end
     end
   end
@@ -215,7 +214,7 @@ describe "Spatial" do
 
       context 'using the manual entry text boxes to enter a new SW point' do
         before :each do
-          click_on 'Search by spatial rectangle'
+          page.execute_script("$('a[title=\"Select Rectangle\"]').click")
           fill_in 'manual-coord-entry-swpoint', with: "0,0\t"
         end
 

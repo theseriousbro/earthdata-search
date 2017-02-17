@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Saving Projects', reset: false do
   context 'when adding a name to a project' do
-    let(:path) { '/search/collections?p=!C179002914-ORNL_DAAC!C179003030-ORNL_DAAC' }
+    let(:path) { '/search/collections?p=C179003030-ORNL_DAAC!C179002914-ORNL_DAAC!C179003030-ORNL_DAAC' }
     let(:query_re) { /^projectId=(\d+)$/ }
 
     before :all do

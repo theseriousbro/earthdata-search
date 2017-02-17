@@ -50,7 +50,7 @@ describe "Collection GIBS visualizations", reset: false do
       load_page :search, env: :sit
       fill_in 'keywords', with: 'C1000001002-EDF_OPS'
       wait_for_xhr
-      first_collection_result.click
+      view_granule_results('AMSR-E/Aqua Daily L3 6.25 km 89 GHz Brightness Temperature (Tb) Polar Grids V002')
       wait_for_xhr
     end
 
