@@ -150,7 +150,6 @@ ns.CollectionFacets = do (ko, currentPage = window.edsc.models.page.current) ->
           children.push(new Facet(this, child))
         else if item.title == 'Keywords'
           if child.applied
-            hasAppliedKeywords = true
             @_findAncestors(ancestors, child)
             parent = ancestors.slice(-1)[0]
             if parent
@@ -160,13 +159,13 @@ ns.CollectionFacets = do (ko, currentPage = window.edsc.models.page.current) ->
                 children.push new Facet(this, grandChild) for grandChild in parent.children
               else if parent.count == 0
                 continue
-              else
-                break
+            index = item.children.indexOf(child)
+            item.children[index] = null if index > -1
         else
           children.push new Facet(this, child)
 
       if item.title == 'Keywords'
-        children.push new Facet(this, child) for child in item.children when child.count > 0 unless hasAppliedKeywords
+        children.push new Facet(this, child) for child in item.children when child? && child.count > 0
 
 
       children
