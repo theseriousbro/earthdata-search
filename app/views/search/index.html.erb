@@ -92,6 +92,11 @@
 
 <div class="master-overlay homepage-search is-master-overlay-secondary-hidden is-master-overlay-maximized" id="collections-overlay">
   <%= render partial: 'overlay_parent' %>
+  <header class="tab" style="margin-left: 300px;">
+    <h2><strong data-bind="text: collections.hits"></strong> Matching Collections</h2>
+    <a class="master-overlay-minimize master-overlay-when-max" href="#" title="Minimize"><i class="fa fa-chevron-circle-down"></i></a>
+    <a class="master-overlay-maximize master-overlay-when-min" href="#" title="Maximize"><i class="fa fa-chevron-circle-up"></i></a>
+  </header>
   <div class="master-overlay-main">
     <div class="master-overlay-main-content" data-level="0">
       <section id="collection-results" class="master-overlay-has-min" data-master-overlay-title="Collections">
@@ -103,11 +108,6 @@
             </span>
           </a>
         </nav>
-        <header class="tab">
-          <h2><strong data-bind="text: collections.hits"></strong> Matching Collections</h2>
-          <a class="master-overlay-minimize master-overlay-when-max" href="#" title="Minimize"><i class="fa fa-chevron-circle-down"></i></a>
-          <a class="master-overlay-maximize master-overlay-when-min" href="#" title="Maximize"><i class="fa fa-chevron-circle-up"></i></a>
-        </header>
         <div class="master-overlay-info master-overlay-when-max">
           <p class="collection-filters">
             <input type="checkbox" id='has-granules' data-bind="checked: query.hasGranules"/>
