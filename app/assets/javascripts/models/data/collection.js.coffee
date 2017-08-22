@@ -58,6 +58,7 @@ ns.Collection = do (ko
       @granuleCount = ko.observable(0)
 
       @hasAtomData = ko.observable(false)
+      @orbitFriendly = ko.observable(false)
 
       @details = @asyncComputed({}, 100, @_computeCollectionDetails, this)
 
@@ -126,12 +127,18 @@ ns.Collection = do (ko
     # Since CMR doesn't support this feature, we get them from the granules that are already loaded.
     _computeAvailableFilters: ->
       _capabilities = {}
+      # The following 'preloads' the available capabilities - this is necessary if zero granules are returned from a query.
+      # @orbitFriendly is there to remind the app that it accepts orbit parameters in the granules filter
+      _capabilities['orbit_calculated_spatial_domains'] = true if @orbitFriendly()
       # Loop for each loaded granules, as long as we found one that capable of day/night filtering or cloud cover filtering,
       # it stops.
       for _granule in @cmrGranulesModel.results()
         _capabilities['day_night_flag'] = true if _granule.day_night_flag? && _granule.day_night_flag.toUpperCase() in ['DAY', 'NIGHT', 'BOTH']
         _capabilities['cloud_cover'] = true if _granule.cloud_cover?
-        break if _capabilities['day_night_flag'] && _capabilities['cloud_cover']
+        _capabilities['orbit_calculated_spatial_domains'] = true if _granule.orbit_calculated_spatial_domains?
+        # if we see it once, then we know it's 'orbitFriendly'
+        @orbitFriendly(true) if _granule.orbit_calculated_spatial_domains?
+        break if _capabilities['day_night_flag'] && _capabilities['cloud_cover'] && _capabilities['orbit_calculated_spatial_domains']
       _capabilities
 
     _computeTimeRange: ->

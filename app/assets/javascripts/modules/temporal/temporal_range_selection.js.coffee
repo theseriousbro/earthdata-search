@@ -59,7 +59,6 @@ do (document, $=jQuery, edsc_date=@edsc.util.date, temporalModel=@edsc.page.quer
       $input.trigger('change')
 
     root.find('.temporal-range-picker').datepicker
-      format: "yyyy-mm-dd"
       startDate: "1960-01-01"
       endDate: new Date()
       startView: 2
@@ -71,7 +70,6 @@ do (document, $=jQuery, edsc_date=@edsc.util.date, temporalModel=@edsc.page.quer
       keyboardNavigation: false
 
     root.find('.temporal-recurring-picker').datepicker(
-      format: "mm-dd"
       startDate: "01-01"
       endDate: "12-31"
       startView: 1
@@ -83,18 +81,34 @@ do (document, $=jQuery, edsc_date=@edsc.util.date, temporalModel=@edsc.page.quer
       keyboardNavigation: false
       ).on 'show', ->
         $(this).data('datepicker').picker.addClass('datepicker-temporal-recurring')
+    
+    $('#equatorial-crossing-date-min').datepicker
+      format: "yyyy-mm-ddT00:00:00"
+      startDate: "1960-01-01"
+      endDate: new Date()
+      startView: 2
+      todayBtn: "linked"
+      clearBtn: true
+      autoclose: true
+      todayHighlight: true
+      forceParse: false
+      keyboardNavigation: false
       
+    $('#equatorial-crossing-date-max').datepicker
+      format: "yyyy-mm-ddT23:59:59"
+      startDate: "1960-01-01"
+      endDate: new Date()
+      startView: 2
+      todayBtn: "linked"
+      clearBtn: true
+      autoclose: true
+      todayHighlight: true
+      forceParse: false
+      keyboardNavigation: false  
 
     # Set end time to 23:59:59
     DatePickerProto = Object.getPrototypeOf($('.temporal').data('datepicker'))
     unless originalSetDate?
-      originalSetDate = DatePickerProto._setDate
-      DatePickerProto._setDate = (date, which) ->
-        updatedDate = date
-        if this.element.hasClass('temporal-stop')
-          updatedDate.setSeconds(date.getSeconds() + 86399) # 23:59:59
-        originalSetDate.call(this, updatedDate, which)
-
       originalFill = DatePickerProto.fill
       DatePickerProto.fill = ->
         originalFill.call(this)
