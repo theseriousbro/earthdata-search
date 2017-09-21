@@ -9,6 +9,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def new
+    if current_user.present?
+      # TODO PQ EDSC-1038: Include portal information here
+      user_id = current_user.id
+      @projects = Project.where("user_id = ? AND name != ?", user_id, '')
+    else
+      redirect_to edsc_path(root_url)
+    end
+  end
+
   def show
     project = Project.find(params[:id])
     if current_user.present? && current_user.id == project.user_id

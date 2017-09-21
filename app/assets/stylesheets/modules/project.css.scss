@@ -1,0 +1,21 @@
+.project {
+
+  display: flex;
+
+  .project-info-sidebar {
+    width: 300px;
+    padding: 10px 20px;
+  }
+
+  .project-collections {
+    background: #e3e3e3;
+    flex: 1;
+  }
+
+  .bounding-box {
+    width: 260px;
+    height: 160px;
+    background: #424242;
+  }
+
+}
