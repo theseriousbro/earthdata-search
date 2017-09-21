@@ -3,10 +3,10 @@
 <% end %>
 
 <% content_for :toolbar_secondary do %>
+  <a class="toolbar-button" href="javascript:history.back()"><i class="fa fa-arrow-circle-o-left"></i> Back <%= request.referrer && request.referrer.include?('search') ? 'to Search Session' : '' %></a>
   <%= render partial: 'shared/feedback' %>
   <%= render partial: 'shared/login' %>
 <% end %>
-
 <div class="project">
   <section class="project-info-sidebar">
     <header>
@@ -21,7 +21,6 @@
           <span class="version-badge"><%= Rails.configuration.logo_name %></span>
         <% end %>
       </h1>
-      <a href="javascript:history.back()"><i class="fa fa-arrow-circle-o-left"></i> Back <%= request.referrer && request.referrer.include?('search') ? 'to Search Session' : '' %></a>
     </header>
 
     <div class="bounding-box">
@@ -38,7 +37,13 @@
       <li><span class="value">45</span> Granules</li>
       <li><span class="value">574</span> MB</li>
     </ul>
-    <div class="project-collections">
+    <div class="project-collection-cards">
+      <div class="collection-card">
+        <h3>AIRS/Aqua L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V006 (AIRS3STD) at GES DISC</h3>
+      </div>
+      <div class="collection-card">
+        <h3>AIRS/Aqua L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V006 (AIRS3STD) at GES DISC</h3>
+      </div>
       <div class="collection-card">
         <h3>AIRS/Aqua L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V006 (AIRS3STD) at GES DISC</h3>
       </div>
