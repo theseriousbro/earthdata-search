@@ -1,15 +1,42 @@
 .project {
 
+  min-height: calc(100vh - 67px);
   display: flex;
 
   .project-info-sidebar {
     width: 300px;
-    padding: 10px 20px;
+    padding: 0 20px;
   }
 
   .project-collections {
     background: #e3e3e3;
     flex: 1;
+
+    h2 {
+      font-size: 1.8em;
+      font-weight: 200;
+    }
+
+    h2, ul {
+      margin: 0;
+      background: #fff;
+      border-bottom: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    .project-stats {
+      li {
+        display: inline-block;
+        font-size: 2em;
+        padding-right: 40px;
+        color: #bdc3c7;
+      }
+
+      .value {
+        font-weight: bold;
+        color: #424242;
+      }
+    }
   }
 
   .bounding-box {
