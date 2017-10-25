@@ -103,6 +103,13 @@ ns.ProjectPage = do (ko,
         _units.shift()
       {size: _size.toFixed(1), unit: _units[0]}
 
+    scrolled: (data, event) =>
+      elem = event.target
+      if (elem.scrollTop > (elem.scrollHeight - elem.offsetHeight - 40))
+        collectionId = $(elem).closest('.modal').prop('id').split('-modal')[0]
+        collection = @project.collections().filter((collection) -> collection.id == collectionId).pop()
+        collection.granuleDatasource().data().loadNextPage()
+
   setCurrent(new ProjectPage())
 
   exports = ProjectPage
